@@ -1,0 +1,111 @@
+﻿
+@model IEnumerable<SwapiConsole.PersonModel>
+
+
+@{
+	ViewBag.Title = "ApiSearch";
+}
+
+
+
+@using (Html.BeginForm("/Home/ApiSearch"))
+{
+<br />
+<div class="row">
+	<div class="col-md-3 col-md-offset-4">
+		<div class="input-group">
+			<input type="text" name="searchTerm" class="form-control" placeholder="Search for...">
+			<span class="input-group-btn">
+				<button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+			</span>
+		</div><!-- /input-group -->
+	</div><!-- /.col-lg-6 -->
+</div><!-- /.row -->
+
+}
+
+
+<br />
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="form-horizontal">
+
+			<hr />
+			<div class="form-group">
+
+
+				<table class="table table-responsive table-striped">
+					<tr>
+						<th>
+							@Html.DisplayName("Name")
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.Gender)
+						</th>
+						<th>
+							@Html.DisplayNameFor(model => model.Species)
+						</th>
+						<th>
+							@Html.DisplayName("Movies")
+						</th>
+
+					</tr>
+
+
+					@foreach (var item in Model)
+
+					{
+						<tr>
+							<td>
+								@Html.DisplayFor(modelItem => item.FullName)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.Gender)
+							</td>
+							<td>
+								@Html.DisplayFor(modelItem => item.SpeciesName)
+							</td>
+							<td>
+								<div class="dropdown">
+									<button class="btn btn-default dropdown-toggle" type="button" id="MovieList" data-toggle="dropdown"
+											aria-haspopup="true" aria-expanded="true">
+										Movies Starred in
+										<span class="caret"></span>
+									</button>
+									<ul class="dropdown-menu" aria-labelledby="MovieList">
+										<li class="dropdown-header"> Movies starred in</li>
+										@foreach (var movie in item.FilmsStarredIn)
+										{
+
+											<li><a href="#">@Html.DisplayFor(modelItem => movie.MovieName)</a></li>
+										}
+									</ul>
+								</div>
+							</td>
+						</tr>
+
+					}
+
+
+
+				</table>
+			</div>
+		</div>
+
+		<nav aria-label="...">
+			<ul class="pager">
+				<li><a href="#">Previous</a></li>
+				<li><a href="#">Next</a></li>
+			</ul>
+		</nav>
+
+	</div>
+
+</div>
+
+
+
+
+
+

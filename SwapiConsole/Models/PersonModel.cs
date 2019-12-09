@@ -11,18 +11,22 @@ namespace SwapiConsole
     [DataContract]
     public class PersonModel
     {
-        
+
 
         [DataMember(Name = "name")]
         public string FullName { get; set; }
-        
+
         [DataMember(Name = "gender")]
         public string Gender { get; set; }
 
         [DataMember(Name = "films")]
-        public string[] Movies{ get; set; }
+        public string[] Movies { get; set; }
 
         [DataMember(Name = "species")]
         public string[] Species { get; set; }
+
+        public string SpeciesName { get; set; }
+
+        public List<MovieModel> FilmsStarredIn = new List<MovieModel>();
     }
 }
