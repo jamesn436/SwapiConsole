@@ -15,6 +15,7 @@ namespace SwapiConsole
         public static async Task<ResultModel> GetStarWarsRootinfo(string name)
         {
             string url = $"https://swapi.co/api/people/?search={name}";
+            ApiHelper.InitializeApiClient();
 
             using (HttpResponseMessage response = await ApiHelper.ApiClient.GetAsync(url))
             {
